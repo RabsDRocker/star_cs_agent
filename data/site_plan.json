@@ -1,0 +1,54 @@
+{
+  "Mechanical_Zone_West": {
+    "polygon_coords": [
+      [
+        -11.0,
+        0.0
+      ],
+      [
+        -4.0,
+        0.0
+      ],
+      [
+        -4.0,
+        6.0
+      ],
+      [
+        -11.0,
+        6.0
+      ]
+    ],
+    "context_tags": [
+      "heavy_machinery",
+      "struck_by",
+      "woodworking_tools"
+    ],
+    "description": "Area containing the skid steer and table saw. High risk of struck-by and equipment-related injuries."
+  },
+  "Electrical_Trip_Hazard_Zone_East": {
+    "polygon_coords": [
+      [
+        -3.0,
+        -6.0
+      ],
+      [
+        11.0,
+        -6.0
+      ],
+      [
+        11.0,
+        0.0
+      ],
+      [
+        -3.0,
+        0.0
+      ]
+    ],
+    "context_tags": [
+      "electrical_safety",
+      "trip_hazard",
+      "impalement_hazard"
+    ],
+    "description": "Area containing the electric service panel, cables, and rebar. High risk of shock, trips, and falls."
+  }
+}

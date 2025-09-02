@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1926.403(i)",
+    "text": "Sufficient access and working space shall be provided and maintained about all electric equipment to permit ready and safe operation and maintenance.",
+    "tags": [
+      "electrical_safety"
+    ]
+  },
+  {
+    "id": "1926.21(b)(2)",
+    "text": "The employer shall instruct each employee in the recognition and avoidance of unsafe conditions and the regulations applicable to his work environment to control or eliminate any hazards.",
+    "tags": [
+      "heavy_machinery",
+      "trip_hazard",
+      "electrical_safety"
+    ]
+  },
+  {
+    "id": "1926.304(f)",
+    "text": "All woodworking tools and machinery shall meet other applicable requirements of American National Standards Institute, 01.1-1961, Safety Code for Woodworking Machinery.",
+    "tags": [
+      "woodworking_tools"
+    ]
+  },
+  {
+    "id": "1926.25(a)",
+    "text": "During the course of construction, alteration, or repairs, form and scrap lumber with protruding nails, and all other debris, shall be kept cleared from work areas, passageways, and stairs, in and around buildings or other structures.",
+    "tags": [
+      "trip_hazard"
+    ]
+  }
+]
