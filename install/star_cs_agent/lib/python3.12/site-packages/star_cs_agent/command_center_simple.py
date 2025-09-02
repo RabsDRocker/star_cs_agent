@@ -115,7 +115,7 @@ class CommandCenterNode(Node):
                     except requests.exceptions.RequestException as e:
                         self.get_logger().error(f"Could not connect to Reasoning API Server: {e}")
 
-        # --- COMPLETE AND CORRECTED VISUALIZATION CODE ---
+        # --- COMPLETE VISUALIZATION CODE ---
         # Site Grid Marker
         grid_marker = Marker(); grid_marker.header.frame_id = "map"; grid_marker.header.stamp = current_time_msg
         grid_marker.ns = "site_layout"; grid_marker.id = marker_id_counter; marker_id_counter += 1
@@ -123,28 +123,17 @@ class CommandCenterNode(Node):
         grid_marker.pose.orientation.w = 1.0
         grid_marker.scale.x = 0.05; grid_marker.color = ColorRGBA(r=0.5, g=0.5, b=0.5, a=0.4)
         grid_cell_size = 1.0
-        # Correctly iterate from MIN to MAX to cover the whole area
         x = SITE_X_MIN
-        while x <= SITE_X_MAX + 0.001: # Add a small epsilon for float precision
+        while x <= SITE_X_MAX:
             grid_marker.points.append(Point(x=x, y=SITE_Y_MIN, z=0.01))
             grid_marker.points.append(Point(x=x, y=SITE_Y_MAX, z=0.01))
             x += grid_cell_size
         y = SITE_Y_MIN
-        while y <= SITE_Y_MAX + 0.001: # Add a small epsilon for float precision
+        while y <= SITE_Y_MAX:
             grid_marker.points.append(Point(x=SITE_X_MIN, y=y, z=0.01))
             grid_marker.points.append(Point(x=SITE_X_MAX, y=y, z=0.01))
             y += grid_cell_size
         marker_array.markers.append(grid_marker)
-
-        # Hazard Zone Outlines
-        for zone_id, zone_data in self.site_plan.items():
-            zone_marker = Marker(); zone_marker.header.frame_id = "map"; zone_marker.header.stamp = current_time_msg
-            zone_marker.ns = "hazard_zones"; zone_marker.id = marker_id_counter; marker_id_counter += 1
-            zone_marker.type = Marker.LINE_STRIP; zone_marker.action = Marker.ADD; zone_marker.pose.orientation.w = 1.0
-            zone_marker.scale.x = 0.1; zone_marker.color = ColorRGBA(r=1.0, g=0.8, b=0.0, a=0.6)
-            for p in zone_data['polygon_coords']: zone_marker.points.append(Point(x=float(p[0]), y=float(p[1]), z=0.0))
-            zone_marker.points.append(Point(x=float(zone_data['polygon_coords'][0][0]), y=float(zone_data['polygon_coords'][0][1]), z=0.0))
-            marker_array.markers.append(zone_marker)
 
         # Pre-defined Hazard Markers
         for hazard in PREDEFINED_HAZARDS:

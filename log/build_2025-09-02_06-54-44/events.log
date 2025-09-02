@@ -1,0 +1,99 @@
+[0.000000] (-) TimerEvent: {}
+[0.000497] (star_cs_agent) JobQueued: {'identifier': 'star_cs_agent', 'dependencies': OrderedDict()}
+[0.000611] (star_cs_agent) JobStarted: {'identifier': 'star_cs_agent'}
+[0.098771] (-) TimerEvent: {}
+[0.203101] (-) TimerEvent: {}
+[0.307965] (-) TimerEvent: {}
+[0.417414] (-) TimerEvent: {}
+[0.518311] (-) TimerEvent: {}
+[0.623211] (-) TimerEvent: {}
+[0.732651] (-) TimerEvent: {}
+[0.839020] (-) TimerEvent: {}
+[0.948353] (-) TimerEvent: {}
+[1.048915] (-) TimerEvent: {}
+[1.149886] (-) TimerEvent: {}
+[1.216176] (star_cs_agent) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'egg_info', '--egg-base', 'build/star_cs_agent', 'build', '--build-base', '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build', 'install', '--record', '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/install.log', '--single-version-externally-managed'], 'cwd': '/home/rehat/colcon_ws/src/star_cs_agent', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'rehat', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'WT_PROFILE_ID': '{885659a9-7d59-5af2-99e5-052db1b3288c}', 'HOME': '/home/rehat', 'OLDPWD': '/home/rehat/colcon_ws', 'ROS_PYTHON_VERSION': '3', 'PS1': '(agent_env) \\[\\e]0;\\u@\\h: \\w\\a\\]${debian_chroot:+($debian_chroot)}\\[\\033[01;32m\\]\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w\\[\\033[00m\\]\\$', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/rehat/colcon_ws/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'rehat', 'NAME': 'DESKTOP-MH98SLA', 'WSL_INTEROP': '/run/WSL/1148_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/home/rehat/agent_env/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Player/bin/:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files/AdoptOpenJDK/jdk-15.0.2.7-hotspot/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files (x86)/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/Program Files/Intel/Intel(R) Management Engine Components/DAL:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/Microsoft SQL Server/120/Tools/Binn/:/mnt/c/Program Files/Common Files/Autodesk Shared/:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Users/rehat/AppData/Local/Programs/Python/Python310/Scripts/:/mnt/c/Users/rehat/AppData/Local/Programs/Python/Python310/:/mnt/c/Users/rehat/AppData/Local/Programs/Python/Python37/Scripts/:/mnt/c/Users/rehat/AppData/Local/Programs/Python/Python37/:/mnt/c/Users/rehat/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files/JetBrains/PyCharm Community Edition 2021.2.2/bin:/mnt/c/Users/rehat/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/ProgramData/Anaconda3/Scripts:/mnt/c/ProgramData/Anaconda3/Library/bin/:/mnt/c/ProgramData/Anaconda3/:/snap/bin', 'WT_SESSION': '7b6c919d-1502-4657-9616-448f022ccc5f', 'XDG_RUNTIME_DIR': '/run/user/1000/', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'VIRTUAL_ENV_PROMPT': '(agent_env)', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/rehat/colcon_ws/install/star_cs_agent:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VIRTUAL_ENV': '/home/rehat/agent_env', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'BASH_ENV': '/etc/bash.bashrc', 'PWD': '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/prefix_override:/home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages:/home/rehat/colcon_ws/install/star_cs_agent/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor', 'WSLENV': 'WT_SESSION:WT_PROFILE_ID:BASH_ENV/u'}, 'shell': False}
+[1.250698] (-) TimerEvent: {}
+[1.355451] (-) TimerEvent: {}
+[1.464939] (-) TimerEvent: {}
+[1.509818] (star_cs_agent) StdoutLine: {'line': b'running egg_info\n'}
+[1.510305] (star_cs_agent) StdoutLine: {'line': b'creating build/star_cs_agent/star_cs_agent.egg-info\n'}
+[1.532071] (star_cs_agent) StdoutLine: {'line': b'writing build/star_cs_agent/star_cs_agent.egg-info/PKG-INFO\n'}
+[1.533003] (star_cs_agent) StdoutLine: {'line': b'writing dependency_links to build/star_cs_agent/star_cs_agent.egg-info/dependency_links.txt\n'}
+[1.533361] (star_cs_agent) StdoutLine: {'line': b'writing entry points to build/star_cs_agent/star_cs_agent.egg-info/entry_points.txt\n'}
+[1.533685] (star_cs_agent) StdoutLine: {'line': b'writing requirements to build/star_cs_agent/star_cs_agent.egg-info/requires.txt\n'}
+[1.534070] (star_cs_agent) StdoutLine: {'line': b'writing top-level names to build/star_cs_agent/star_cs_agent.egg-info/top_level.txt\n'}
+[1.534625] (star_cs_agent) StdoutLine: {'line': b"writing manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'\n"}
+[1.567841] (-) TimerEvent: {}
+[1.583319] (star_cs_agent) StdoutLine: {'line': b"reading manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'\n"}
+[1.584173] (star_cs_agent) StdoutLine: {'line': b"writing manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'\n"}
+[1.584454] (star_cs_agent) StdoutLine: {'line': b'running build\n'}
+[1.584567] (star_cs_agent) StdoutLine: {'line': b'running build_py\n'}
+[1.584869] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build\n'}
+[1.585979] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib\n'}
+[1.586770] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.587471] (star_cs_agent) StdoutLine: {'line': b'copying star_cs_agent/__init__.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.587797] (star_cs_agent) StdoutLine: {'line': b'copying star_cs_agent/command_center_simple.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.588167] (star_cs_agent) StdoutLine: {'line': b'copying star_cs_agent/agent_simulator.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.588600] (star_cs_agent) StdoutLine: {'line': b'copying star_cs_agent/reasoning_api_server.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.588960] (star_cs_agent) StdoutLine: {'line': b'copying star_cs_agent/dashboard.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent\n'}
+[1.589602] (star_cs_agent) StdoutLine: {'line': b'running install\n'}
+[1.590051] (star_cs_agent) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.\n'}
+[1.590192] (star_cs_agent) StderrLine: {'line': b'!!\n'}
+[1.590272] (star_cs_agent) StderrLine: {'line': b'\n'}
+[1.590348] (star_cs_agent) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.590425] (star_cs_agent) StderrLine: {'line': b'        Please avoid running ``setup.py`` directly.\n'}
+[1.590496] (star_cs_agent) StderrLine: {'line': b'        Instead, use pypa/build, pypa/installer or other\n'}
+[1.590595] (star_cs_agent) StderrLine: {'line': b'        standards-based tools.\n'}
+[1.590682] (star_cs_agent) StderrLine: {'line': b'\n'}
+[1.590752] (star_cs_agent) StderrLine: {'line': b'        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.\n'}
+[1.590824] (star_cs_agent) StderrLine: {'line': b'        ********************************************************************************\n'}
+[1.590894] (star_cs_agent) StderrLine: {'line': b'\n'}
+[1.590963] (star_cs_agent) StderrLine: {'line': b'!!\n'}
+[1.591032] (star_cs_agent) StderrLine: {'line': b'  self.initialize_options()\n'}
+[1.607993] (star_cs_agent) StdoutLine: {'line': b'running install_lib\n'}
+[1.631303] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.631942] (star_cs_agent) StdoutLine: {'line': b'copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/__init__.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.632180] (star_cs_agent) StdoutLine: {'line': b'copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/command_center_simple.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.632466] (star_cs_agent) StdoutLine: {'line': b'copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/agent_simulator.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.633005] (star_cs_agent) StdoutLine: {'line': b'copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/reasoning_api_server.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.633386] (star_cs_agent) StdoutLine: {'line': b'copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/dashboard.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent\n'}
+[1.634030] (star_cs_agent) StdoutLine: {'line': b'byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/__init__.py to __init__.cpython-312.pyc\n'}
+[1.636321] (star_cs_agent) StdoutLine: {'line': b'byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/command_center_simple.py to command_center_simple.cpython-312.pyc\n'}
+[1.639686] (star_cs_agent) StdoutLine: {'line': b'byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/agent_simulator.py to agent_simulator.cpython-312.pyc\n'}
+[1.641256] (star_cs_agent) StdoutLine: {'line': b'byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/reasoning_api_server.py to reasoning_api_server.cpython-312.pyc\n'}
+[1.643300] (star_cs_agent) StdoutLine: {'line': b'byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/dashboard.py to dashboard.cpython-312.pyc\n'}
+[1.643983] (star_cs_agent) StdoutLine: {'line': b'running install_data\n'}
+[1.667857] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index\n'}
+[1.668060] (-) TimerEvent: {}
+[1.668436] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index\n'}
+[1.669074] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index/packages\n'}
+[1.670587] (star_cs_agent) StdoutLine: {'line': b'copying resource/star_cs_agent -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index/packages\n'}
+[1.671062] (star_cs_agent) StdoutLine: {'line': b'copying package.xml -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent\n'}
+[1.671482] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch\n'}
+[1.673118] (star_cs_agent) StdoutLine: {'line': b'copying launch/start_simulation.launch.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch\n'}
+[1.673625] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/rviz\n'}
+[1.674913] (star_cs_agent) StdoutLine: {'line': b'copying rviz/simple_config.rviz -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/rviz\n'}
+[1.675386] (star_cs_agent) StdoutLine: {'line': b'creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.676032] (star_cs_agent) StdoutLine: {'line': b'copying data/knowledge_base.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.676378] (star_cs_agent) StdoutLine: {'line': b'copying data/safety_report.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.676672] (star_cs_agent) StdoutLine: {'line': b'copying data/safety_report.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.676850] (star_cs_agent) StdoutLine: {'line': b'copying data/site_plan.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.677055] (star_cs_agent) StdoutLine: {'line': b'copying data/site_plan.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.677393] (star_cs_agent) StdoutLine: {'line': b'copying data/site_plan.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.678036] (star_cs_agent) StdoutLine: {'line': b'copying data/knowledge_base.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.678403] (star_cs_agent) StdoutLine: {'line': b'copying data/safety_report_log.jsonl -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.678682] (star_cs_agent) StdoutLine: {'line': b'copying data/safety_report.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.678925] (star_cs_agent) StdoutLine: {'line': b'copying data/knowledge_base.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data\n'}
+[1.679179] (star_cs_agent) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.704383] (star_cs_agent) StdoutLine: {'line': b'Copying build/star_cs_agent/star_cs_agent.egg-info to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent-0.0.0-py3.12.egg-info\n'}
+[1.706811] (star_cs_agent) StdoutLine: {'line': b'running install_scripts\n'}
+[1.773764] (-) TimerEvent: {}
+[1.865553] (star_cs_agent) StdoutLine: {'line': b'Installing agent_simulator script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent\n'}
+[1.866512] (star_cs_agent) StdoutLine: {'line': b'Installing command_center script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent\n'}
+[1.868277] (star_cs_agent) StdoutLine: {'line': b"writing list of installed files to '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/install.log'\n"}
+[1.874470] (-) TimerEvent: {}
+[1.903650] (star_cs_agent) CommandEnded: {'returncode': 0}
+[1.975437] (-) TimerEvent: {}
+[1.980902] (star_cs_agent) JobEnded: {'identifier': 'star_cs_agent', 'rc': 0}
+[1.982440] (-) EventReactorShutdown: {}

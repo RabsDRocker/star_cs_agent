@@ -1,0 +1,75 @@
+[1.219s] Invoking command in '/home/rehat/colcon_ws/src/star_cs_agent': PS1=(agent_env) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/prefix_override:/home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(agent_env) /usr/bin/python3 setup.py egg_info --egg-base build/star_cs_agent build --build-base /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build install --record /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/install.log --single-version-externally-managed
+[1.510s] running egg_info
+[1.510s] creating build/star_cs_agent/star_cs_agent.egg-info
+[1.532s] writing build/star_cs_agent/star_cs_agent.egg-info/PKG-INFO
+[1.532s] writing dependency_links to build/star_cs_agent/star_cs_agent.egg-info/dependency_links.txt
+[1.533s] writing entry points to build/star_cs_agent/star_cs_agent.egg-info/entry_points.txt
+[1.533s] writing requirements to build/star_cs_agent/star_cs_agent.egg-info/requires.txt
+[1.534s] writing top-level names to build/star_cs_agent/star_cs_agent.egg-info/top_level.txt
+[1.534s] writing manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'
+[1.583s] reading manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'
+[1.584s] writing manifest file 'build/star_cs_agent/star_cs_agent.egg-info/SOURCES.txt'
+[1.584s] running build
+[1.584s] running build_py
+[1.584s] creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build
+[1.585s] creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib
+[1.586s] creating /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.587s] copying star_cs_agent/__init__.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.587s] copying star_cs_agent/command_center_simple.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.588s] copying star_cs_agent/agent_simulator.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.588s] copying star_cs_agent/reasoning_api_server.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.588s] copying star_cs_agent/dashboard.py -> /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent
+[1.589s] running install
+[1.590s] /usr/lib/python3/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[1.590s] !!
+[1.590s] 
+[1.590s]         ********************************************************************************
+[1.590s]         Please avoid running ``setup.py`` directly.
+[1.590s]         Instead, use pypa/build, pypa/installer or other
+[1.590s]         standards-based tools.
+[1.590s] 
+[1.590s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[1.590s]         ********************************************************************************
+[1.590s] 
+[1.590s] !!
+[1.590s]   self.initialize_options()
+[1.607s] running install_lib
+[1.631s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.631s] copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/__init__.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.632s] copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/command_center_simple.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.632s] copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/agent_simulator.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.633s] copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/reasoning_api_server.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.633s] copying /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build/lib/star_cs_agent/dashboard.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent
+[1.633s] byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/__init__.py to __init__.cpython-312.pyc
+[1.636s] byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/command_center_simple.py to command_center_simple.cpython-312.pyc
+[1.639s] byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/agent_simulator.py to agent_simulator.cpython-312.pyc
+[1.641s] byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/reasoning_api_server.py to reasoning_api_server.cpython-312.pyc
+[1.643s] byte-compiling /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent/dashboard.py to dashboard.cpython-312.pyc
+[1.643s] running install_data
+[1.667s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index
+[1.668s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index
+[1.669s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index/packages
+[1.670s] copying resource/star_cs_agent -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/ament_index/resource_index/packages
+[1.671s] copying package.xml -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent
+[1.671s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch
+[1.673s] copying launch/start_simulation.launch.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch
+[1.673s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/rviz
+[1.674s] copying rviz/simple_config.rviz -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/rviz
+[1.675s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.675s] copying data/knowledge_base.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.676s] copying data/safety_report.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.676s] copying data/safety_report.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.676s] copying data/site_plan.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.677s] copying data/site_plan.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.677s] copying data/site_plan.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.678s] copying data/knowledge_base.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.678s] copying data/safety_report_log.jsonl -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.678s] copying data/safety_report.json:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.678s] copying data/knowledge_base.json:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[1.679s] running install_egg_info
+[1.704s] Copying build/star_cs_agent/star_cs_agent.egg-info to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star_cs_agent-0.0.0-py3.12.egg-info
+[1.706s] running install_scripts
+[1.865s] Installing agent_simulator script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+[1.866s] Installing command_center script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+[1.868s] writing list of installed files to '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/install.log'
+[1.904s] Invoked command in '/home/rehat/colcon_ws/src/star_cs_agent' returned '0': PS1=(agent_env) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/prefix_override:/home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(agent_env) /usr/bin/python3 setup.py egg_info --egg-base build/star_cs_agent build --build-base /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build install --record /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/install.log --single-version-externally-managed
