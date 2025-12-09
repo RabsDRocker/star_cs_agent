@@ -1,0 +1,88 @@
+{
+  "zones": {
+    "Electrical_Trip_Hazard_Zone_East": {
+      "zone_id": "Electrical_Trip_Hazard_Zone_East",
+      "num_snapshots": 40,
+      "total_risk_sum": 228.76086217325218,
+      "max_risk_seen": 3.5981839780808818,
+      "agents_appeared": {
+        "agent2": 21,
+        "agent3": 4
+      },
+      "hazard_classes": {
+        "electric service panel": 40,
+        "rebar w-o cap": 40
+      },
+      "average_total_risk": 5.719021554331304
+    },
+    "Mechanical_Zone_West": {
+      "zone_id": "Mechanical_Zone_West",
+      "num_snapshots": 40,
+      "total_risk_sum": 89.01024898770805,
+      "max_risk_seen": 8.23288576197292,
+      "agents_appeared": {
+        "agent1": 39,
+        "agent3": 7,
+        "agent2": 3
+      },
+      "hazard_classes": {
+        "skid steer": 40
+      },
+      "average_total_risk": 2.2252562246927012
+    }
+  },
+  "agents": {
+    "agent1": {
+      "agent_id": "agent1",
+      "num_events": 57,
+      "num_predicted_interactions": 40,
+      "hazard_classes_encountered": {
+        "skid steer": 8,
+        "rebar w cap": 3,
+        "cables": 3,
+        "electric service panel": 5,
+        "rebar w-o cap": 6,
+        "table saw": 3
+      },
+      "zones_visited": {
+        "Mechanical_Zone_West": 9,
+        "Electrical_Trip_Hazard_Zone_East": 8
+      }
+    },
+    "agent2": {
+      "agent_id": "agent2",
+      "num_events": 57,
+      "num_predicted_interactions": 42,
+      "hazard_classes_encountered": {
+        "electric service panel": 7,
+        "rebar w cap": 4,
+        "skid steer": 6,
+        "cables": 4,
+        "rebar w-o cap": 5,
+        "table saw": 5
+      },
+      "zones_visited": {
+        "Mechanical_Zone_West": 9,
+        "Electrical_Trip_Hazard_Zone_East": 8
+      }
+    },
+    "agent3": {
+      "agent_id": "agent3",
+      "num_events": 57,
+      "num_predicted_interactions": 76,
+      "hazard_classes_encountered": {
+        "skid steer": 11,
+        "cables": 10,
+        "electric service panel": 13,
+        "rebar w-o cap": 12,
+        "table saw": 11,
+        "rebar w cap": 6
+      },
+      "zones_visited": {
+        "Mechanical_Zone_West": 9,
+        "Electrical_Trip_Hazard_Zone_East": 8
+      }
+    }
+  },
+  "num_events_summarized": 57
+}

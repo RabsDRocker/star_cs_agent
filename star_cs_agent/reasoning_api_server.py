@@ -1,8 +1,13 @@
-# STAR-CS Reasoning API Server with Spatially-Aware RAG and Rich Risk-Aware Reasoning
+# STAR-CS Reasoning API Server
+# - Spatially-Aware RAG over OSHA/NIOSH
+# - Event-based reasoning for STAR-CS
+# - Long-term episodic memory (event_history.json)
+# - Summarized memory (memory_summary.json)
+# - Chat endpoint for safety Q&A over memory
 
 import os
 import json
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Tuple
 
 import numpy as np
 from dotenv import load_dotenv
@@ -16,6 +21,7 @@ from langchain_core.output_parsers import StrOutputParser
 # -------- Paths and configuration --------
 
 DATA_DIR = os.path.expanduser('~/colcon_ws/src/star_cs_agent/data')
+
 env_path = os.path.join(DATA_DIR, '.env')
 load_dotenv(dotenv_path=env_path)
 
@@ -28,6 +34,14 @@ embedding_model = OpenAIEmbeddings(model='text-embedding-3-small')
 KNOWLEDGE_BASE_PATH = os.path.join(DATA_DIR, 'knowledge_base.json')
 SITE_PLAN_PATH = os.path.join(DATA_DIR, 'site_plan.json')
 REPORT_FILE_PATH = os.path.join(DATA_DIR, 'safety_report.json')
+
+# Long-term memory files
+HISTORY_PATH = os.path.join(DATA_DIR, 'event_history.json')
+MEMORY_SUMMARY_PATH = os.path.join(DATA_DIR, 'memory_summary.json')
+
+# Limits
+MAX_HISTORY_EVENTS = 1000         # keep last N events in episodic memory
+SUMMARY_HORIZON_EVENTS = 200      # number of most recent events to summarize
 
 
 def load_knowledge_base():
@@ -42,8 +56,215 @@ KNOWLEDGE_DB, KB_EMBEDDINGS = load_knowledge_base()
 with open(SITE_PLAN_PATH, 'r') as f:
     SITE_PLAN = json.load(f)
 
-# -------- Spatially-Aware RAG helpers --------
 
+# =============================
+#  Long-Term Memory Utilities
+# =============================
+
+def load_history(max_events: int = MAX_HISTORY_EVENTS) -> List[Dict[str, Any]]:
+    """Load the episodic event history."""
+    if not os.path.exists(HISTORY_PATH):
+        return []
+    try:
+        with open(HISTORY_PATH, 'r') as f:
+            history = json.load(f)
+    except Exception:
+        return []
+    if not isinstance(history, list):
+        return []
+    return history[-max_events:]
+
+
+def save_history(history: List[Dict[str, Any]]):
+    """Persist the episodic history."""
+    history = history[-MAX_HISTORY_EVENTS:]
+    with open(HISTORY_PATH, 'w') as f:
+        json.dump(history, f, indent=2)
+
+
+def append_to_history(event_data: Dict[str, Any], report: Dict[str, Any]):
+    """
+    Append a compact record of this event to the episodic memory.
+    We keep it small but informative.
+    """
+    history = load_history()
+
+    record = {
+        "timestamp": event_data.get("timestamp"),
+        "event_type": event_data.get("event_type"),
+        "zone_id": event_data.get("zone_id"),
+        "risk_zones": event_data.get("risk_zones", []),
+        "predictive_interactions": event_data.get("predictive_interactions", []),
+        "agents": list((event_data.get("all_agents_locations") or {}).keys()),
+        "situation_overview": report.get("situation_overview"),
+        "safety_regulatory_concerns": report.get("safety_regulatory_concerns"),
+    }
+
+    history.append(record)
+    save_history(history)
+
+    # After appending, update the summarized memory
+    update_memory_summary(history[-SUMMARY_HORIZON_EVENTS:])
+
+
+def update_memory_summary(history_slice: List[Dict[str, Any]]):
+    """
+    Build a simple summarized memory over the last K events:
+    - Per zone: how often high-risk, average risk, common hazards/agents.
+    - Per agent: how often involved in predicted interactions (and with what).
+    """
+    zone_stats: Dict[str, Dict[str, Any]] = {}
+    agent_stats: Dict[str, Dict[str, Any]] = {}
+
+    for rec in history_slice:
+        ev_type = rec.get("event_type")
+        zone_id = rec.get("zone_id")
+        risk_zones = rec.get("risk_zones", [])
+        interactions = rec.get("predictive_interactions", [])
+        agents = rec.get("agents", [])
+
+        # Count episodes per agent
+        for aid in agents:
+            a = agent_stats.setdefault(aid, {
+                "agent_id": aid,
+                "num_events": 0,
+                "num_predicted_interactions": 0,
+                "hazard_classes_encountered": {},
+                "zones_visited": {},
+            })
+            a["num_events"] += 1
+            if zone_id:
+                a["zones_visited"][zone_id] = a["zones_visited"].get(zone_id, 0) + 1
+
+        # Aggregate risk_zones
+        for rz in risk_zones:
+            zid = rz.get("zone_id")
+            if not zid:
+                continue
+            z = zone_stats.setdefault(zid, {
+                "zone_id": zid,
+                "num_snapshots": 0,
+                "total_risk_sum": 0.0,
+                "max_risk_seen": 0.0,
+                "agents_appeared": {},
+                "hazard_classes": {},
+            })
+            z["num_snapshots"] += 1
+            tr = rz.get("total_risk", 0.0)
+            mr = rz.get("max_risk", 0.0)
+            z["total_risk_sum"] += float(tr)
+            z["max_risk_seen"] = max(z["max_risk_seen"], float(mr))
+
+            # count agents and hazards
+            for aid in rz.get("agents", []):
+                z["agents_appeared"][aid] = z["agents_appeared"].get(aid, 0) + 1
+            for h in rz.get("hazard_details", []):
+                hclass = h.get("class", "unknown")
+                z["hazard_classes"][hclass] = z["hazard_classes"].get(hclass, 0) + 1
+
+        # Aggregate predictive interactions
+        for inter in interactions:
+            itype = inter.get("type")
+            participants = inter.get("agents", [])
+            hz_class = inter.get("hazard_class")
+            for pid in participants:
+                if pid.startswith("agent"):
+                    a = agent_stats.setdefault(pid, {
+                        "agent_id": pid,
+                        "num_events": 0,
+                        "num_predicted_interactions": 0,
+                        "hazard_classes_encountered": {},
+                        "zones_visited": {},
+                    })
+                    a["num_predicted_interactions"] += 1
+                    if hz_class:
+                        a["hazard_classes_encountered"][hz_class] = \
+                            a["hazard_classes_encountered"].get(hz_class, 0) + 1
+
+    # Finalize: compute averages
+    for zid, z in zone_stats.items():
+        if z["num_snapshots"] > 0:
+            z["average_total_risk"] = z["total_risk_sum"] / z["num_snapshots"]
+        else:
+            z["average_total_risk"] = 0.0
+
+    summary = {
+        "zones": zone_stats,
+        "agents": agent_stats,
+        "num_events_summarized": len(history_slice),
+    }
+
+    with open(MEMORY_SUMMARY_PATH, 'w') as f:
+        json.dump(summary, f, indent=2)
+
+
+def load_memory_summary() -> Dict[str, Any]:
+    if not os.path.exists(MEMORY_SUMMARY_PATH):
+        return {}
+    try:
+        with open(MEMORY_SUMMARY_PATH, 'r') as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def render_memory_summary_for_prompt(summary: Dict[str, Any]) -> str:
+    """
+    Turn the summarized memory into human-readable lines for the LLM prompt.
+    """
+    if not summary:
+        return "No long-term memory summary is available yet."
+
+    lines: List[str] = []
+
+    zones = summary.get("zones", {})
+    agents = summary.get("agents", {})
+    n_events = summary.get("num_events_summarized", 0)
+
+    lines.append(f"Summarized over the last {n_events} events:")
+
+    if zones:
+        lines.append("\nZones with notable risk history:")
+        # sort zones by average_total_risk descending
+        zone_list = list(zones.values())
+        zone_list.sort(key=lambda z: z.get("average_total_risk", 0.0), reverse=True)
+        for z in zone_list[:5]:
+            zid = z.get("zone_id")
+            avg_r = z.get("average_total_risk", 0.0)
+            max_r = z.get("max_risk_seen", 0.0)
+            n_snap = z.get("num_snapshots", 0)
+            hz = z.get("hazard_classes", {})
+            hz_str = ", ".join([f"{k} (x{v})" for k, v in hz.items()]) or "none"
+            agents_ = z.get("agents_appeared", {})
+            ag_str = ", ".join([f"{k} (x{v})" for k, v in agents_.items()]) or "none"
+            lines.append(
+                f"- Zone {zid}: avg total risk≈{avg_r:.2f}, max cell risk≈{max_r:.2f}, "
+                f"{n_snap} high-risk snapshots, agents seen: {ag_str}, hazards seen: {hz_str}."
+            )
+
+    if agents:
+        lines.append("\nAgents with notable interaction history:")
+        agent_list = list(agents.values())
+        agent_list.sort(key=lambda a: a.get("num_predicted_interactions", 0), reverse=True)
+        for a in agent_list[:5]:
+            aid = a.get("agent_id")
+            ne = a.get("num_events", 0)
+            nint = a.get("num_predicted_interactions", 0)
+            hz_enc = a.get("hazard_classes_encountered", {})
+            hz_str = ", ".join([f"{k} (x{v})" for k, v in hz_enc.items()]) or "none"
+            zones_ = a.get("zones_visited", {})
+            z_str = ", ".join([f"{k} (x{v})" for k, v in zones_.items()]) or "none"
+            lines.append(
+                f"- {aid}: involved in {ne} events and {nint} predicted interactions, "
+                f"often near hazards: {hz_str}; zones visited: {z_str}."
+            )
+
+    return "\n".join(lines)
+
+
+# =============================
+#  Spatially-Aware RAG helpers
+# =============================
 
 def synthesize_query(event: Dict[str, Any]) -> str:
     """
@@ -52,6 +273,7 @@ def synthesize_query(event: Dict[str, Any]) -> str:
     - Zone entry context (hazards + agents)
     - High-risk zones (from risk field)
     - Predicted interactions with cell IDs and positions.
+    - Long-term memory summary (from past events).
     """
     etype = event.get('event_type', 'Unknown Event')
     lines = [f"Event type: {etype}.", f"Timestamp: {event.get('timestamp')}.\n"]
@@ -133,9 +355,15 @@ def synthesize_query(event: Dict[str, Any]) -> str:
         for aid, loc in all_agents.items():
             lines.append(f"- {aid}: ({loc['x']:.2f}, {loc['y']:.2f}, {loc['z']:.2f})")
 
-    # NOTE: Even though we don't persist long-term memory here,
-    # we explicitly *tell* the LLM to behave as if it has long-term
-    # spatial-temporal memory of similar events and risk patterns.
+    # 5) Long-term memory summary
+    mem_summary = load_memory_summary()
+    if mem_summary:
+        lines.append("\nLong-Term Site Memory (Summarized):")
+        lines.append(render_memory_summary_for_prompt(mem_summary))
+    else:
+        lines.append("\nLong-Term Site Memory (Summarized): No sufficient history yet.")
+
+    # Persona reminder
     lines.append(
         "\nAssume you are a maturing safety agent with long-term spatial and temporal memory "
         "of this site (zones, cells, hazards, occupancy, and past events), similar to an "
@@ -249,7 +477,6 @@ def parse_report_sections(report_text: str) -> Dict[str, str]:
         "Recommendations": "N/A",
     }
 
-    # Split on '###' and inspect headings
     parts = report_text.split("###")
     for raw in parts:
         text = raw.strip()
@@ -270,7 +497,96 @@ def parse_report_sections(report_text: str) -> Dict[str, str]:
     return sections
 
 
-# -------- Flask app --------
+# ================
+#   Chat helpers
+# ================
+
+def retrieve_context_for_chat(user_query: str) -> str:
+    """
+    For free-form chat questions, we don't have a single event.
+    We:
+    - Use the full OSHA/NIOSH knowledge base (no spatial filtering).
+    - Retrieve top-k clauses relevant to the query.
+    """
+    if not KNOWLEDGE_DB:
+        return "No OSHA/NIOSH knowledge base is available."
+
+    query_emb = embedding_model.embed_query(user_query)
+    kb_embs = np.array(KB_EMBEDDINGS)
+    sims = cosine_similarity([query_emb], kb_embs)[0]
+
+    top_k = 4
+    idxs = np.argsort(sims)[-top_k:][::-1]
+
+    lines = ["Top OSHA/NIOSH clauses relevant to the query:"]
+    for i in idxs:
+        doc = KNOWLEDGE_DB[int(i)]
+        lines.append(f"- Rule: {doc.get('id')}\n  Text: {doc.get('text')}")
+    return "\n".join(lines)
+
+
+def build_chat_answer(user_query: str) -> str:
+    """
+    Use:
+    - Long-term memory summary
+    - Recent episodes from event history
+    - OSHA/NIOSH clauses (RAG)
+    To answer safety-related questions from the safety manager.
+    """
+    mem_summary = load_memory_summary()
+    long_term_text = render_memory_summary_for_prompt(mem_summary) if mem_summary else (
+        "No long-term summary is available yet."
+    )
+
+    history = load_history()
+    recent_events = history[-30:]  # last ~30 events for context
+    recent_lines: List[str] = []
+    for rec in recent_events:
+        ts = rec.get("timestamp")
+        et = rec.get("event_type")
+        zid = rec.get("zone_id")
+        so = rec.get("situation_overview") or ""
+        recent_lines.append(
+            f"- [t={ts}] {et} in zone {zid}: {so[:160]}..."
+        )
+    recent_text = "\n".join(recent_lines) if recent_lines else "No recent episodes logged."
+
+    reg_context = retrieve_context_for_chat(user_query)
+
+    prompt = PromptTemplate.from_template(
+        "You are the STAR-CS safety agent: a mature, physics-aware safety manager AI for a construction site.\n\n"
+        "The safety manager is asking you a question.\n\n"
+        "## Safety Manager Question\n"
+        "{question}\n\n"
+        "## Long-Term Site Memory (Summarized)\n"
+        "{memory_summary}\n\n"
+        "## Recent Episodes (Chronological Snippets)\n"
+        "{recent_episodes}\n\n"
+        "## Relevant OSHA/NIOSH Clauses\n"
+        "{reg_context}\n\n"
+        "## Instructions\n"
+        "- Answer in a way that is grounded in the provided memory and regulations.\n"
+        "- When you discuss statistics or trends (e.g., which zone is most risky), base it on the memory summary, "
+        "not on hallucinated data.\n"
+        "- You can still use your physics understanding (e.g., speed, separation distances, time-to-collision) "
+        "to explain why certain patterns are concerning.\n"
+        "- If the question asks for something the memory does not contain, say what you **can** infer and what you cannot.\n"
+        "- Be concise but clear, and structure your response with short paragraphs and bullet points where helpful.\n"
+    )
+    chain = prompt | llm | StrOutputParser()
+    return chain.invoke(
+        {
+            "question": user_query,
+            "memory_summary": long_term_text,
+            "recent_episodes": recent_text,
+            "reg_context": reg_context,
+        }
+    )
+
+
+# ================
+#   Flask app
+# ================
 
 app_flask = Flask(__name__)
 
@@ -307,13 +623,41 @@ def analyze_event():
         "actionable_recommendations": sections["Recommendations"],
     }
 
+    # Save most recent report for dashboard
     with open(REPORT_FILE_PATH, 'w') as f:
         json.dump(report, f, indent=2)
     print("--- Workflow complete. Report saved. ---")
 
+    # Append to long-term memory
+    append_to_history(event_data, report)
+
     return jsonify({"status": "success", "report_timestamp": report["timestamp"]})
 
 
+@app_flask.route('/chat', methods=['POST'])
+def chat_with_agent():
+    """Chat endpoint for the dashboard."""
+    try:
+        payload = request.get_json(force=True)
+        user_query = payload.get("user_query", "").strip()
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"Invalid JSON: {e}"}), 400
+
+    if not user_query:
+        return jsonify({"status": "error", "message": "user_query is required"}), 400
+
+    print("\n=== Chat request from safety manager ===")
+    print(f"Question: {user_query}")
+
+    try:
+        answer = build_chat_answer(user_query)
+    except Exception as e:
+        print(f"Error while building chat answer: {e}")
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+    return jsonify({"status": "success", "answer": answer})
+
+
 if __name__ == '__main__':
-    print('🚀 Starting STAR-CS Reasoning API Server (Safety Regulatory Concerns version)...')
+    print('🚀 Starting STAR-CS Reasoning API Server with Long-Term Memory + Chat...')
     app_flask.run(host='0.0.0.0', port=5001)

@@ -1,0 +1,25 @@
+running develop
+running egg_info
+writing star_cs_agent.egg-info/PKG-INFO
+writing dependency_links to star_cs_agent.egg-info/dependency_links.txt
+writing entry points to star_cs_agent.egg-info/entry_points.txt
+writing requirements to star_cs_agent.egg-info/requires.txt
+writing top-level names to star_cs_agent.egg-info/top_level.txt
+reading manifest file 'star_cs_agent.egg-info/SOURCES.txt'
+writing manifest file 'star_cs_agent.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star-cs-agent.egg-link (link to .)
+Installing agent_simulator script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+Installing command_center script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+
+Installed /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent
+running install_data
+copying package.xml -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent
+copying launch/start_simulation.launch.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch
+copying data/.env:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+copying data/.env:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+copying data/.env -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+copying data/safety_report.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets
+copying data/assets/system_flowchart.png -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets
+copying data/assets/graphviz (1).png:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets

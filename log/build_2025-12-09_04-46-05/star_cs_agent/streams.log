@@ -1,0 +1,55 @@
+[1.547s] Invoking command in '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent': PYTHONPATH=/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/prefix_override:/home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build --no-deps install_data
+[1.918s] running develop
+[1.925s] /usr/lib/python3/dist-packages/setuptools/command/develop.py:40: EasyInstallDeprecationWarning: easy_install command is deprecated.
+[1.925s] !!
+[1.925s] 
+[1.926s]         ********************************************************************************
+[1.926s]         Please avoid running ``setup.py`` and ``easy_install``.
+[1.926s]         Instead, use pypa/build, pypa/installer or other
+[1.926s]         standards-based tools.
+[1.926s] 
+[1.926s]         See https://github.com/pypa/setuptools/issues/917 for details.
+[1.926s]         ********************************************************************************
+[1.926s] 
+[1.926s] !!
+[1.926s]   easy_install.initialize_options(self)
+[1.970s] /usr/lib/python3/dist-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+[1.970s] !!
+[1.970s] 
+[1.970s]         ********************************************************************************
+[1.970s]         Please avoid running ``setup.py`` directly.
+[1.971s]         Instead, use pypa/build, pypa/installer or other
+[1.971s]         standards-based tools.
+[1.971s] 
+[1.971s]         See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+[1.971s]         ********************************************************************************
+[1.971s] 
+[1.971s] !!
+[1.971s]   self.initialize_options()
+[2.121s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:363: UserWarning: Unbuilt egg for pytest-repeat [unknown version] (/usr/lib/python3/dist-packages)
+[2.121s]   self.local_index = Environment(self.shadow_path + sys.path)
+[2.160s] running egg_info
+[2.182s] writing star_cs_agent.egg-info/PKG-INFO
+[2.182s] writing dependency_links to star_cs_agent.egg-info/dependency_links.txt
+[2.183s] writing entry points to star_cs_agent.egg-info/entry_points.txt
+[2.183s] writing requirements to star_cs_agent.egg-info/requires.txt
+[2.184s] writing top-level names to star_cs_agent.egg-info/top_level.txt
+[2.230s] reading manifest file 'star_cs_agent.egg-info/SOURCES.txt'
+[2.232s] writing manifest file 'star_cs_agent.egg-info/SOURCES.txt'
+[2.254s] running build_ext
+[2.255s] Creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages/star-cs-agent.egg-link (link to .)
+[2.256s] Installing agent_simulator script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+[2.257s] Installing command_center script to /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/star_cs_agent
+[2.257s] 
+[2.258s] Installed /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent
+[2.258s] running install_data
+[2.258s] copying package.xml -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent
+[2.258s] copying launch/start_simulation.launch.py -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/launch
+[2.260s] copying data/.env:Zone.Identifier:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[2.261s] copying data/.env:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[2.263s] copying data/.env -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[2.263s] copying data/safety_report.json -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data
+[2.263s] creating /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets
+[2.266s] copying data/assets/system_flowchart.png -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets
+[2.270s] copying data/assets/graphviz (1).png:Zone.Identifier -> /home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/share/star_cs_agent/data/assets
+[2.315s] Invoked command in '/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent' returned '0': PYTHONPATH=/home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/prefix_override:/home/rehat/colcon_ws/src/star_cs_agent/install/star_cs_agent/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/rehat/colcon_ws/src/star_cs_agent/build/star_cs_agent/build --no-deps install_data
