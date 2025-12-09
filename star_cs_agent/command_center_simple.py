@@ -192,7 +192,7 @@ class CommandCenterNode(Node):
 
         # Publishers / timers
         self.marker_pub = self.create_publisher(MarkerArray, "/visualization_marker_array", 10)
-        self.create_timer(0.2, self.visualization_and_risk_loop)
+        self.create_timer(0.5, self.visualization_and_risk_loop)  # 2 Hz
 
         # Risk snapshot throttling
         self._last_risk_snapshot_time = 0.0
@@ -497,6 +497,26 @@ class CommandCenterNode(Node):
         # --------- Visualization ---------
         self._publish_markers(now_msg, active_agents, hazards_copy)
 
+    # ---------- Helper: send events to reasoning API asynchronously ----------
+
+    def _post_event_async(self, payload: dict, context: str):
+        """
+        Send an event JSON to the reasoning API in a background thread so that
+        the main ROS2 timer is never blocked by network / LLM latency.
+        """
+        import requests
+
+        def worker():
+            try:
+                requests.post("http://127.0.0.1:5001/analyze", json=payload, timeout=15)
+            except requests.exceptions.RequestException as e:
+                self.get_logger().error(
+                    f"[{context}] Could not connect to Reasoning API Server: {e}"
+                )
+
+        t = threading.Thread(target=worker, daemon=True)
+        t.start()
+
     # ---------- Event helpers ----------
 
     def _trigger_zone_entry_event(
@@ -566,10 +586,8 @@ class CommandCenterNode(Node):
             "zone_agents": zone_agents,
         }
 
-        try:
-            requests.post("http://127.0.0.1:5001/analyze", json=payload, timeout=10)
-        except requests.exceptions.RequestException as e:
-            self.get_logger().error(f"Could not connect to Reasoning API Server (zone entry): {e}")
+        # Send to reasoning server without blocking the main loop
+        self._post_event_async(payload, context="zone entry")
 
     def _trigger_risk_snapshot_event(
         self,
@@ -663,10 +681,8 @@ class CommandCenterNode(Node):
             },
         }
 
-        try:
-            requests.post("http://127.0.0.1:5001/analyze", json=payload, timeout=10)
-        except requests.exceptions.RequestException as e:
-            self.get_logger().error(f"Could not connect to Reasoning API Server (risk snapshot): {e}")
+        # Send to reasoning server without blocking the main loop
+        self._post_event_async(payload, context="risk snapshot")
 
     # ---------- Visualization: risk, peaks, hazards, agents, zones ----------
 
